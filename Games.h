@@ -5,7 +5,7 @@ using namespace RSPGames;
 class Game_RSP {
 	public :
 		Game_RSP();
-		int Get_result();
+		int Get_winpoint();
 		int Get_defeat();
 		int Input_data();		//가위바위보 선택
 		bool GameAgent();		//메인 게임 에이전트,True : 결과 나옴 / False : 안나옴(Draw 등)
@@ -14,6 +14,7 @@ class Game_RSP {
 	private :
 		int win_count;
 		int defeat_count;
+		bool isPlay;
 
 		void Reset_Seed();
 		inline int com_rand();		//자동

@@ -4,6 +4,7 @@
 Game_RSP::Game_RSP() {
 	win_count = 0;
 	defeat_count = 0;
+	isPlay = false;
 	Reset_Seed();
 }
 
@@ -11,26 +12,30 @@ Game_RSP::Game_RSP() {
 bool Game_RSP::GameAgent() {
 	int blue = Input_data();
 	int red = com_rand();		//네트워크 연결시 상대방 결과, 비연결시 com 자동.
-	bool GameResult;
-
-	if (blue == 0)
-		return false;//포기
-	else if (blue == -1)
-		return true;//뒤로가기
 	
 
+	if (blue == 0) 
+		return false;//포기	
+	else if (blue == -1) {
+		isPlay = false;
+		return true;//뒤로가기
+	}	
 
-	if (GameMachine(blue, red) == Result::draw) {
+	int gameResult = Result::draw;
+	gameResult = GameMachine(blue, red);
+	if (gameResult == Result::draw) {
 		return false;
 	}
-	else
+	else {
+		if (gameResult == Result::Win)
+			win_count++;
+		if (gameResult == Result::Lose)
+			defeat_count++;
+
 		return true;
-	
-	
-
-
+	}
 }
-int Game_RSP::Get_result() {
+int Game_RSP::Get_winpoint() {
 	return win_count;
 }
 int Game_RSP::Get_defeat() {
@@ -38,9 +43,7 @@ int Game_RSP::Get_defeat() {
 }
 int Game_RSP::Input_data() {		//이게 호출이 제일 과할거 같은데...
 	int input;
-	std::cin >> input;
-
-	
+	std::cin >> input;	
 
 	return input;
 }
