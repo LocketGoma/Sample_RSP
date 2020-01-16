@@ -23,4 +23,9 @@ namespace RSPGames {
 		Lose = -1,
 		draw = 0
 	}Result;
+
+	typedef enum Option :int {
+		Avoid = -1,
+		Surrender = 0
+	}Option;
 }

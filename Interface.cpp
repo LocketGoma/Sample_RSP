@@ -16,6 +16,7 @@ int main() {
 
 GameInterface::GameInterface() {
 	GameClinet = new Game_RSP();
+	networkConnected = false;
 }
 
 void GameInterface::Start() {
@@ -48,9 +49,8 @@ bool GameInterface::Selector() {
 	cin >> selectCode;
 	
 	switch (selectCode) {
-	case 1: {
-		GameClinet->GameAgent();
-
+	case 1: {		
+		this->gamePackage();
 
 		break;
 		}
@@ -78,5 +78,67 @@ bool GameInterface::Selector() {
 		   
 	}
 
+	getchar();
+
 	return true;
+}
+
+bool GameInterface::gamePackage() {
+	int blueInput=0;
+	int GameResult = RSPGames::Result::draw;
+
+
+	blueInput = GameClinet->Input_data();
+
+	if (blueInput == RSPGames::Option::Avoid) {
+		cout << "메인화면으로 돌아갑니다." << endl;
+
+		return false;
+	}
+	else if (blueInput == RSPGames::Option::Surrender) {
+		cout << "이번 턴을 포기합니다. 무조건 패배로 기록됩니다." << endl;
+	}
+	else {
+		cout << "나 : ";
+		cout << RSPMsg(blueInput) << endl;
+		
+		GameResult = GameClinet->GameAgent(blueInput);
+
+		cout << "게임에서 ";
+		if (GameResult == RSPGames::Result::draw)
+			cout << "비겼습니다.";
+		else {
+			cout << ResultMsg(GameResult);
+			cout << "하셨습니다.";
+		}
+		cout << endl;
+
+	}
+
+
+	return true;
+
+}
+
+string GameInterface::ResultMsg(int msg) {
+	string result;
+	if (msg == RSPGames::Result::Lose)
+		result = "패배";
+	if (msg == RSPGames::Result::draw)
+		result = "비김";
+	if (msg == RSPGames::Result::Win)
+		result = "승리";
+
+	return result;
+}
+string GameInterface::RSPMsg(int msg) {
+	string result;
+	if (msg == RSPGames::Card::Sessios)
+		result = "가위";
+	if (msg == RSPGames::Card::Rock)
+		result = "바위";
+	if (msg == RSPGames::Card::Paper)
+		result = "보";
+
+	return result;
 }

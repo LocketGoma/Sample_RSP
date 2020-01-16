@@ -9,31 +9,18 @@ Game_RSP::Game_RSP() {
 }
 
 //Public
-bool Game_RSP::GameAgent() {	//ÀÌ°Å ±×³É ´Ù ¶â¾î¾ßÇÏ³×;
-	int blue = Input_data();
+int Game_RSP::GameAgent(int blue) {	//ÀÌ°Å ±×³É ´Ù ¶â¾î¾ßÇÏ³×;
 	int red = com_rand();		//³×Æ®¿öÅ© ¿¬°á½Ã »ó´ë¹æ °á°ú, ºñ¿¬°á½Ã com ÀÚµ¿.
-	
-
-	if (blue == 0) 
-		return false;//Æ÷±â	
-	else if (blue == -1) {
-		isPlay = false;
-		return true;//µÚ·Î°¡±â
-	}	
 
 	int gameResult = Result::draw;
 	gameResult = GameMachine(blue, red);
-	if (gameResult == Result::draw) {
-		return false;
-	}
-	else {
-		if (gameResult == Result::Win)
-			win_count++;
-		if (gameResult == Result::Lose)
-			defeat_count++;
-
-		return true;
-	}
+	
+	if (gameResult == Result::Win)
+		win_count++;
+	if (gameResult == Result::Lose)
+		defeat_count++;	
+	
+	return gameResult;
 }
 int Game_RSP::Get_winpoint() {
 	return win_count;
@@ -44,6 +31,13 @@ int Game_RSP::Get_defeat() {
 int Game_RSP::Input_data() {		//ÀÌ°Ô È£ÃâÀÌ Á¦ÀÏ °úÇÒ°Å °°Àºµ¥...
 	int input;
 	std::cin >> input;	
+
+	if (input > 3) {
+		input %= 3;
+		if (input == 0) {
+			input = 3;
+		}
+	}
 
 	return input;
 }
