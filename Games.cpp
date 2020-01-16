@@ -9,7 +9,7 @@ Game_RSP::Game_RSP() {
 }
 
 //Public
-bool Game_RSP::GameAgent() {
+bool Game_RSP::GameAgent() {	//이거 그냥 다 뜯어야하네;
 	int blue = Input_data();
 	int red = com_rand();		//네트워크 연결시 상대방 결과, 비연결시 com 자동.
 	
