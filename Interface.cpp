@@ -49,7 +49,9 @@ bool GameInterface::Selector() {
 	cin >> selectCode;
 	
 	switch (selectCode) {
-	case 1: {		
+	case 1: {
+		cout << "1 : 가위 / 2 : 바위 / 3 : 보 " << endl;
+		cout << "-1 : 메뉴로 돌아가기 / 0 : 턴 포기" << endl;
 		this->gamePackage();
 
 		break;
@@ -85,6 +87,7 @@ bool GameInterface::Selector() {
 
 bool GameInterface::gamePackage() {
 	int blueInput=0;
+	int redInput = 0;
 	int GameResult = RSPGames::Result::draw;
 
 
@@ -102,7 +105,11 @@ bool GameInterface::gamePackage() {
 		cout << "나 : ";
 		cout << RSPMsg(blueInput) << endl;
 		
-		GameResult = GameClinet->GameAgent(blueInput);
+		redInput = GameClinet->RedSelect();
+		cout << "상대 : ";
+		cout << RSPMsg(redInput) << endl;
+
+		GameResult = GameClinet->GameAgent(blueInput, redInput);
 
 		cout << "게임에서 ";
 		if (GameResult == RSPGames::Result::draw)

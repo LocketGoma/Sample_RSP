@@ -9,8 +9,8 @@ Game_RSP::Game_RSP() {
 }
 
 //Public
-int Game_RSP::GameAgent(int blue) {	//이거 그냥 다 뜯어야하네;
-	int red = com_rand();		//네트워크 연결시 상대방 결과, 비연결시 com 자동.
+int Game_RSP::GameAgent(int blue, int red) {	//이거 그냥 다 뜯어야하네;
+	
 
 	int gameResult = Result::draw;
 	gameResult = GameMachine(blue, red);
@@ -38,6 +38,11 @@ int Game_RSP::Input_data() {		//이게 호출이 제일 과할거 같은데...
 			input = 3;
 		}
 	}
+	return input;
+}
+int Game_RSP::RedSelect() {
+	int input = com_rand();		//네트워크 연결시 상대방 결과, 비연결시 com 자동.
+
 
 	return input;
 }

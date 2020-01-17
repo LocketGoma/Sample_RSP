@@ -13,8 +13,8 @@
 
 namespace RSPGames {
 	typedef enum Card :int {
-		Rock = 1,
-		Sessios = 2,
+		Sessios = 1,
+		Rock = 2,		
 		Paper = 3
 	}Card;
 
