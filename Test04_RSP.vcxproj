@@ -28,7 +28,6 @@
     <ClInclude Include="Games.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -10,6 +10,7 @@
 //실제 "환경 대응"식 작업시에는, unix 기반에서는 sys/socket.h, windows 기반에서는 winsock를 사용하면 된다.
 // = 두 환경을 비교, 대응할 수 있는 방식으로 작성해야 할 것
 
+//그러니까... 서버사이드 하나 만들고 클라이언트 사이드 만들어서 쓰면 되겠네
 
 class SimpleSocket {
 	public:
@@ -28,9 +29,11 @@ class SimpleSocket {
 
 	private:
 		WSADATA wsaData;
+		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
+		bool connection();
 
 
-		bool initSocket();		//초기정보 가공
+
 
 
 };
