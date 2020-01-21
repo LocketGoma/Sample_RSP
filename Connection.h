@@ -24,7 +24,7 @@ class SimpleSocket {
 
 		SimpleSocket();
 
-		bool setOppositIP();
+		
 		inline void setPortNumb(int port);		//포트번호 설정
 		bool makeServer();		//연결 대기 (서버화)
 		bool JoinServer();		//연결 수립용
@@ -34,7 +34,7 @@ class SimpleSocket {
 		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
 		bool connection();
-
+		int setOppositIP();
 
 
 
@@ -50,3 +50,7 @@ struct sockaddr_in {
 };
 
 */
+
+//if (A(val)) { if (B(val)) { return(C(val)); } }
+//return(false);
+//= 3개 다 성공해야 실행됨.
