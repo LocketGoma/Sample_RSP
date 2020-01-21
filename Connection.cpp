@@ -15,8 +15,13 @@ SimpleSocket::SimpleSocket() {
 	
 	portnumb = 8008;		//default
 
+	isServerSide = true;
+
 }
 
+inline void SimpleSocket::setPortNumb(int port) { //번호 범위 점검 해줘야하나?
+	portnumb = port;	
+}
 
 
 

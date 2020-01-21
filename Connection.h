@@ -25,10 +25,12 @@ class SimpleSocket {
 		SimpleSocket();
 
 		bool setOppositIP();
-		bool setPortNumb();
+		inline void setPortNumb(int port);		//포트번호 설정
+		bool JoinServer();		//연결 수립용
 
 	private:
 		WSADATA wsaData;
+		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
 		bool connection();
 
