@@ -26,6 +26,7 @@ class SimpleSocket {
 
 		bool setOppositIP();
 		inline void setPortNumb(int port);		//포트번호 설정
+		bool makeServer();		//연결 대기 (서버화)
 		bool JoinServer();		//연결 수립용
 
 	private:

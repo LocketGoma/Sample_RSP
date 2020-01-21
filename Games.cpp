@@ -22,10 +22,10 @@ int Game_RSP::GameAgent(int blue, int red) {	//이거 그냥 다 뜯어야하네;
 	
 	return gameResult;
 }
-int Game_RSP::Get_winpoint() {
+int Game_RSP::Get_winpoint() const{
 	return win_count;
 }
-int Game_RSP::Get_defeat() {
+int Game_RSP::Get_defeat() const {
 	return defeat_count;
 }
 int Game_RSP::Input_data() {		//이게 호출이 제일 과할거 같은데...

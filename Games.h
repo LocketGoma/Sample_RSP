@@ -5,8 +5,8 @@ using namespace RSPGames;
 class Game_RSP {
 	public :
 		Game_RSP();
-		int Get_winpoint();
-		int Get_defeat();
+		int Get_winpoint() const;	//'내부 값 변경 방지'
+		int Get_defeat() const;
 		int Input_data();		//가위바위보 선택
 		int RedSelect();
 		int GameAgent(int,int);		//-1 : 패배 / 0 : 비김 / 1 : 승리
