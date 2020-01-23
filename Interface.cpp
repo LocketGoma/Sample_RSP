@@ -2,7 +2,8 @@
 
 
 int main() {
-	GameInterface* Game = new GameInterface();
+	//GameInterface* Game = new GameInterface();
+	unique_ptr<GameInterface> Game = make_unique<GameInterface>();
 	Game->Start();
 
 	return 0;
@@ -15,7 +16,7 @@ int main() {
 
 
 GameInterface::GameInterface() {
-	GameClinet = new Game_RSP();
+	GameClinet = make_unique<Game_RSP>();
 	networkConnected = false;
 }
 

@@ -11,7 +11,7 @@ class GameInterface {
 
 
 	private:
-		Game_RSP *GameClinet;
+		unique_ptr<Game_RSP> GameClinet;
 		bool Selector();
 		bool gamePackage();
 		bool networkConnected; //연결되었는지 여부 확인.
