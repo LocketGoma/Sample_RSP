@@ -1,6 +1,7 @@
 #pragma once
 #include "Resource.h"
 #include "Games.h"
+#include "Connection.h"
 #include <string>
 using namespace std;
 
@@ -12,6 +13,7 @@ class GameInterface {
 
 	private:
 		unique_ptr<Game_RSP> GameClinet;
+		unique_ptr<SimpleSocket> GameNetwork;
 		bool Selector();
 		bool gamePackage();
 		bool networkConnected; //연결되었는지 여부 확인.
