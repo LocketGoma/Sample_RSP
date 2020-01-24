@@ -23,8 +23,6 @@ inline void SimpleSocket::setPortNumb(int port) { //번호 범위 점검 해줘야하나?
 }
 
 bool SimpleSocket::makeServer() {
-
-
 	isServerSide = true;
 	return true;
 }

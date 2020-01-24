@@ -1,9 +1,11 @@
 #pragma once
+#pragma comment(lib, "ws2_32.lib")
 #include "Resource.h"
 #include <sys/types.h>
-#include <winsock.h>
+#include <WinSock2.h>
 
 
+//https://nroses-taek.tistory.com/105
 //https://stackoverflow.com/questions/35019684/socket-programming-simple-chat-c
 //https://m.blog.naver.com/tmone1/10181445622
 
