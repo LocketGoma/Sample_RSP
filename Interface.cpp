@@ -63,10 +63,18 @@ bool GameInterface::Selector() {
 		break;	
 	}
 	case 3: {
-		cout << "============°á°ú============" << endl;
+		cout << "===============°á°ú===============" << endl;
 		cout << "½Â¸® : " << GameClinet->Get_winpoint() << "    ";
-		cout << "ÆÐ¹è : " << GameClinet->Get_defeat() << endl;
-		cout << "============================" << endl;
+		cout << "ÆÐ¹è : " << GameClinet->Get_defeat()<< "    ";
+		cout << "½Â·ü : ";
+		cout.width(3);
+		if (GameClinet->Get_defeat() != 0)
+			cout << static_cast<float>(GameClinet->Get_winpoint()) / static_cast<float>(GameClinet->Get_winpoint() + GameClinet->Get_defeat()) * 100 ;
+		else
+			GameClinet->Get_winpoint() !=0 ? cout<<"100" :cout << "0";		//Div zero.
+		cout << "%" << endl;
+
+		cout << "==================================" << endl;
 		break;
 	}
 	case 0: {
