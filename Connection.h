@@ -22,6 +22,9 @@ class SimpleSocket {
 		SOCKADDR_IN hBAddr; //'Server' 포지션
 		SOCKADDR_IN hRAddr; //'Client' 포지션
 
+		SOCKET cSock;		//접속용 클라이언트 소캣
+		SOCKADDR_IN cAddr;	//접속용 클라이언트 주소
+
 		int portnumb;		//기본 포트번호
 
 		SimpleSocket();
@@ -34,10 +37,20 @@ class SimpleSocket {
 	private:
 		WSADATA wsaData;
 		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
-		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
-		bool connection();
-		int setOppositIP();
+		int szRAddr;			//모임? 대체모임?
 
+
+
+		//Server Side
+		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
+		bool SocKBind();
+		bool CloseSocket();
+		
+
+		//Client Side
+		void initConnect();
+		bool ClientBind();
+		int setOppositIP();
 
 
 
