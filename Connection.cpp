@@ -4,7 +4,9 @@
 
 //public
 SimpleSocket::SimpleSocket() {
-	assert(WSAStartup(MAKEWORD(2, 2), &wsaData) != 0);
+	//assert(WSAStartup(MAKEWORD(2, 2), &wsaData) != 0);	
+	//	std::cout << "Error!" << std::endl;
+	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)		//==0을 하면 Error가 뜨고, !=0이 하면 터지고...
 		std::cout << "Error!" << std::endl;
 		
 	//SeverSide Clear
@@ -73,6 +75,15 @@ bool SimpleSocket::CloseSocket() {
 
 	return true;
 }
+bool SimpleSocket::SendingMessage() {
+	std::string msg;
+	std::cin >> msg;
+	send(hRSock, const_cast<char *>(msg.c_str()), sizeof(msg), 0);
+
+
+	return true;
+}
+
 
 //private-Client Side
 void SimpleSocket::initConnect() {
@@ -82,6 +93,15 @@ void SimpleSocket::initConnect() {
 
 bool SimpleSocket::ClientBind() {
 	inet_pton(AF_INET, setOppositIP(), &cAddr.sin_addr.s_addr);
+	connect(cSock, (SOCKADDR *)(&cAddr), sizeof(SOCKADDR_IN));
+	
+
+	return true;
+}
+bool SimpleSocket::CallingMessange() {
+	std::string msg;
+	recv(cSock, const_cast<char*>(msg.c_str()), sizeof(msg) - 1, 0);
+	std::cout << "S : " <<msg << std::endl;
 
 
 	return true;

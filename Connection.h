@@ -47,12 +47,14 @@ class SimpleSocket {
 		//Server Side
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
 		bool SocKBind();		//통신 연결
+		bool SendingMessage();
 		bool CloseSocket();
 		
 
 		//Client Side
 		void initConnect();
 		bool ClientBind();		//통신 연결
+		bool CallingMessange();
 		char* setOppositIP();
 
 

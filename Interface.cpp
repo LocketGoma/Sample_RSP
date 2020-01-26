@@ -17,7 +17,7 @@ int main() {
 
 GameInterface::GameInterface() {
 	GameClinet = make_unique<Game_RSP>();
-	//GameNetwork = make_unique<SimpleSocket>();
+	GameNetwork = make_unique<SimpleSocket>();
 	networkConnected = false;
 }
 
