@@ -17,7 +17,7 @@ int main() {
 
 GameInterface::GameInterface() {
 	GameClinet = make_unique<Game_RSP>();
-	GameNetwork = make_unique<SimpleSocket>();
+	//GameNetwork = make_unique<SimpleSocket>();
 	networkConnected = false;
 }
 
@@ -26,7 +26,7 @@ void GameInterface::Start() {
 		cout << "게임 실행에 문제가 생겼습니다. 다시 실행해주세요." << endl;
 		cout << "게임을 종료합니다." << endl;
 
-		getchar();
+		cout << getchar();
 
 		exit(0);
 	}
@@ -50,6 +50,7 @@ bool GameInterface::Selector() {
 	int selectCode;
 	cin >> selectCode;
 	
+
 	switch (selectCode) {
 	case 1: {
 		cout << "1 : 가위 / 2 : 바위 / 3 : 보 " << endl;
@@ -90,7 +91,7 @@ bool GameInterface::Selector() {
 		   
 	}
 
-	getchar();
+	cout << getchar();
 
 	return true;
 }

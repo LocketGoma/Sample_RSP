@@ -81,8 +81,12 @@ void SimpleSocket::initConnect() {
 }
 
 bool SimpleSocket::ClientBind() {
-
+	inet_pton(AF_INET, setOppositIP(), &cAddr.sin_addr.s_addr);
 
 
 	return true;
+}
+
+char * SimpleSocket::setOppositIP() {
+	return const_cast<char *>(ServerIP.c_str());
 }

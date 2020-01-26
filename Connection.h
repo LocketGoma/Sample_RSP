@@ -3,6 +3,8 @@
 #include "Resource.h"
 #include <sys/types.h>
 #include <WinSock2.h>
+#include <WS2tcpip.h>
+#include <string.h>
 
 
 //https://nroses-taek.tistory.com/105
@@ -38,19 +40,20 @@ class SimpleSocket {
 		WSADATA wsaData;
 		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
 		int szRAddr;			//모임? 대체모임?
+		std::string ServerIP;
 
 
 
 		//Server Side
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
-		bool SocKBind();
+		bool SocKBind();		//통신 연결
 		bool CloseSocket();
 		
 
 		//Client Side
 		void initConnect();
-		bool ClientBind();
-		int setOppositIP();
+		bool ClientBind();		//통신 연결
+		char* setOppositIP();
 
 
 
