@@ -18,9 +18,7 @@ SimpleSocket::SimpleSocket() {
 	
 	portnumb = 8008;		//default
 
-	//ClientSide Clear
-	cSock = socket(PF_INET, SOCK_STREAM, 0);
-	memset(&cAddr, 0, sizeof(cAddr));
+
 
 
 	isServerSide = false;
@@ -85,10 +83,19 @@ bool SimpleSocket::SendingMessage() {
 }
 
 
-//private-Client Side
+//Client Side
+SimpleConnect::SimpleConnect() {
+	//ClientSide Clear
+	cSock = socket(PF_INET, SOCK_STREAM, 0);
+	memset(&cAddr, 0, sizeof(cAddr));
+
+	portnumb = 8008;
+}
+
+
 void SimpleConnect::initConnect() {
 	cAddr.sin_family = AF_INET;
-	cAddr.sin_port = htons(SimpleSocket::portnumb);	
+	cAddr.sin_port = htons(SimpleConnect::portnumb);
 }
 
 bool SimpleConnect::ClientBind() {

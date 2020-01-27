@@ -57,6 +57,8 @@ class SimpleConnect {		//클라이언트 사이드
 		SOCKET cSock;		//접속용 클라이언트 소캣
 		SOCKADDR_IN cAddr;	//접속용 클라이언트 주소
 
+		int portnumb;		//기본 포트번호
+
 
 	private:
 		//Client Side
