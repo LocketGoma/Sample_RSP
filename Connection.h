@@ -16,16 +16,13 @@
 
 //그러니까... 서버사이드 하나 만들고 클라이언트 사이드 만들어서 쓰면 되겠네
 
-class SimpleSocket {
+class SimpleSocket {		//서버사이드
 	public:
 		//SOCKET = uint
 		SOCKET hBSock;		//'Server' 포지션
 		SOCKET hRSock;		//'Client' 포지션
 		SOCKADDR_IN hBAddr; //'Server' 포지션
 		SOCKADDR_IN hRAddr; //'Client' 포지션
-
-		SOCKET cSock;		//접속용 클라이언트 소캣
-		SOCKADDR_IN cAddr;	//접속용 클라이언트 주소
 
 		int portnumb;		//기본 포트번호
 
@@ -40,9 +37,8 @@ class SimpleSocket {
 		WSADATA wsaData;
 		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
 		int szRAddr;			//모임? 대체모임?
-		std::string ServerIP;
-
-
+		
+		
 
 		//Server Side
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
@@ -51,15 +47,28 @@ class SimpleSocket {
 		bool CloseSocket();
 		
 
+
+
+
+};
+class SimpleConnect {		//클라이언트 사이드
+	public:
+		SimpleConnect();
+		SOCKET cSock;		//접속용 클라이언트 소캣
+		SOCKADDR_IN cAddr;	//접속용 클라이언트 주소
+
+
+	private:
 		//Client Side
+		std::string ServerIP;
 		void initConnect();
 		bool ClientBind();		//통신 연결
 		bool CallingMessange();
 		char* setOppositIP();
 
-
-
 };
+
+
 
 /*
 struct sockaddr_in {

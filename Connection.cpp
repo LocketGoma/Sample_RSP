@@ -86,19 +86,19 @@ bool SimpleSocket::SendingMessage() {
 
 
 //private-Client Side
-void SimpleSocket::initConnect() {
+void SimpleConnect::initConnect() {
 	cAddr.sin_family = AF_INET;
 	cAddr.sin_port = htons(SimpleSocket::portnumb);	
 }
 
-bool SimpleSocket::ClientBind() {
+bool SimpleConnect::ClientBind() {
 	inet_pton(AF_INET, setOppositIP(), &cAddr.sin_addr.s_addr);
 	connect(cSock, (SOCKADDR *)(&cAddr), sizeof(SOCKADDR_IN));
 	
 
 	return true;
 }
-bool SimpleSocket::CallingMessange() {
+bool SimpleConnect::CallingMessange() {
 	std::string msg;
 	recv(cSock, const_cast<char*>(msg.c_str()), sizeof(msg) - 1, 0);
 	std::cout << "S : " <<msg << std::endl;
@@ -107,6 +107,6 @@ bool SimpleSocket::CallingMessange() {
 	return true;
 }
 
-char * SimpleSocket::setOppositIP() {
+char * SimpleConnect::setOppositIP() {
 	return const_cast<char *>(ServerIP.c_str());
 }
