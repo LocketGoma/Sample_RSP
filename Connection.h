@@ -7,6 +7,7 @@
 #include <string.h>
 
 
+
 //https://nroses-taek.tistory.com/105
 //https://stackoverflow.com/questions/35019684/socket-programming-simple-chat-c
 //https://m.blog.naver.com/tmone1/10181445622
@@ -27,8 +28,9 @@ class SimpleSocket {		//서버사이드
 		int portnumb;		//기본 포트번호
 
 		SimpleSocket();
-
-		
+#ifdef SockTEST
+		void test();		//일단 다 쏟아붇는 용도
+#endif		
 		inline void setPortNumb(int port);		//포트번호 설정
 		bool makeServer();		//연결 대기 (서버화)
 		bool JoinServer();		//연결 수립용
@@ -58,7 +60,9 @@ class SimpleConnect {		//클라이언트 사이드
 		SOCKADDR_IN cAddr;	//접속용 클라이언트 주소
 
 		int portnumb;		//기본 포트번호
-
+#ifdef SockTEST
+		void test();
+#endif
 
 	private:
 		//Client Side
@@ -70,6 +74,13 @@ class SimpleConnect {		//클라이언트 사이드
 
 };
 
+
+static void ErrorHandling(const char* message)
+{
+	fputs(message, stderr);
+	fputc('\n', stderr);
+	exit(1);
+}
 
 
 /*
