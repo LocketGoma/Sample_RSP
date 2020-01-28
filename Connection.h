@@ -28,6 +28,7 @@ class SimpleSocket {		//서버사이드
 
 		SimpleSocket();
 
+		void test();		//일단 다 쏟아붇는 용도
 		
 		inline void setPortNumb(int port);		//포트번호 설정
 		bool makeServer();		//연결 대기 (서버화)
@@ -59,6 +60,7 @@ class SimpleConnect {		//클라이언트 사이드
 
 		int portnumb;		//기본 포트번호
 
+		void test();
 
 	private:
 		//Client Side
@@ -70,6 +72,13 @@ class SimpleConnect {		//클라이언트 사이드
 
 };
 
+
+static void ErrorHandling(const char* message)
+{
+	fputs(message, stderr);
+	fputc('\n', stderr);
+	exit(1);
+}
 
 
 /*

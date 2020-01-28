@@ -17,7 +17,8 @@ int main() {
 
 GameInterface::GameInterface() {
 	GameClinet = make_unique<Game_RSP>();
-	GameNetwork = make_unique<SimpleSocket>();
+	GameNServer = make_unique<SimpleSocket>();
+	GameNClient = make_unique<SimpleConnect>();
 	networkConnected = false;
 }
 
@@ -36,7 +37,7 @@ void GameInterface::Start() {
 
 
 	while (true) {
-		if (Selector() == false)
+		if (Selector(true) == false)
 			break;
 	}
 }
@@ -95,6 +96,43 @@ bool GameInterface::Selector() {
 
 	return true;
 }
+bool GameInterface::Selector(bool swit) {
+	if (swit == false)
+		return false;
+
+	int selectCode;
+	cout << "연결 테스트용" << endl;
+	cout << "1 : 서버 / 2 : 클라 / 0 : 종료" << endl;
+
+	cin >> selectCode;
+
+
+	switch (selectCode) {
+	case 1: {
+		GameNServer->test();
+
+		break;
+		}
+	case 2: {
+		GameNClient->test();
+
+		break;
+	}
+	default: {
+
+	}
+
+
+	}
+
+
+
+
+
+	return true;
+}
+
+
 
 bool GameInterface::gamePackage() {
 	int blueInput=0;
