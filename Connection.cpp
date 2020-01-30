@@ -69,12 +69,12 @@ bool SimpleSocket::CloseSocket() {
 	return true;
 }
 bool SimpleSocket::SendingMessage() {
+	int ans = 1;
 	std::string msg;
 	std::cin >> msg;
-	send(hRSock, const_cast<char *>(msg.c_str()), sizeof(msg), 0);
+	ans = send(hRSock, const_cast<char *>(msg.c_str()), sizeof(msg), 0);	
 
-
-	return true;
+	return ans!=0?true:false;
 }
 
 
