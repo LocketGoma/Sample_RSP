@@ -68,13 +68,21 @@ bool SimpleSocket::CloseSocket() {
 
 	return true;
 }
-bool SimpleSocket::SendingMessage() {
+bool SimpleSocket::SendingMessage(char * input) {
 	int ans = 1;
-	std::string msg;
-	std::cin >> msg;
-	ans = send(hRSock, const_cast<char *>(msg.c_str()), sizeof(msg), 0);	
+	std::string sendmsg;
+	std::cin >> sendmsg;
+	input = &sendmsg.at(0);
+	ans = send(hRSock, const_cast<char *>(sendmsg.c_str()), sizeof(sendmsg), 0);
 
-	return ans!=0?true:false;
+	return ans != 0 ? true : false;
+}
+bool SimpleSocket::RecevingMessange() {
+	std::string recvmsg;
+	recv(cSock, const_cast<char*>(recvmsg.c_str()), sizeof(recvmsg) - 1, 0);
+	std::cout << "S : " << recvmsg << std::endl;
+
+	return true;
 }
 
 
@@ -97,13 +105,21 @@ bool SimpleConnect::ClientBind() {
 
 	return true;
 }
-bool SimpleConnect::CallingMessange() {
-	std::string msg;
-	recv(cSock, const_cast<char*>(msg.c_str()), sizeof(msg) - 1, 0);
-	std::cout << "S : " <<msg << std::endl;
-
+bool SimpleConnect::RecevingMessange() {
+	std::string recvmsg;
+	recv(cSock, const_cast<char*>(recvmsg.c_str()), sizeof(recvmsg) - 1, 0);
+	std::cout << "S : " << recvmsg << std::endl;
 
 	return true;
+}
+bool SimpleConnect::SendingMessage(char* input) {
+	int ans = 1;
+	std::string sendmsg;
+	std::cin >> sendmsg;
+	input = &sendmsg.at(0);
+	ans = send(cSock, const_cast<char*>(sendmsg.c_str()), sizeof(sendmsg), 0);
+
+	return ans != 0 ? true : false;
 }
 char * SimpleConnect::setOppositIP() {
 	return const_cast<char *>(ServerIP.c_str());

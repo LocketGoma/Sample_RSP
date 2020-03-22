@@ -38,18 +38,17 @@ class SimpleSocket {		//서버사이드
 	private:
 		WSADATA wsaData;
 		bool isServerSide;		//서버파트 (=접속대기)인지, 클라파트(=접속요청)인지.
-		int szRAddr;			//모임? 대체모임?
-		
+		int szRAddr;			//모임? 대체모임?		
 		
 
 		//Server Side
 		void initSocket();		//초기정보 가공.. 성공시 체크하고싶은데.
 		bool SocKBind();		//통신 연결
-		bool SendingMessage();
+		bool SendingMessage(char * input);
+		bool RecevingMessange();
 		bool CloseSocket();
-		
 
-
+		int gameInput;		//Sendingmsg 에서 char 포인터를 통해 받은 값.
 
 
 };
@@ -69,9 +68,11 @@ class SimpleConnect {		//클라이언트 사이드
 		std::string ServerIP;
 		void initConnect();
 		bool ClientBind();		//통신 연결
-		bool CallingMessange();
+		bool SendingMessage(char* input);
+		bool RecevingMessange();
 		char* setOppositIP();
 
+		int gameInput;		//Sendingmsg 에서 char 포인터를 통해 받은 값.
 };
 
 
